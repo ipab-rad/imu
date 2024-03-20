@@ -8,6 +8,8 @@ RUN apt update \
         nano \
         # Ping network tools
         inetutils-ping \
+        # Bash auto-completion for convenience
+        bash-completion \
         # Install Lord IMU driver pkg
         ros-$ROS_DISTRO-microstrain-inertial-driver \
     && rm -rf /var/lib/apt/lists/*
@@ -22,7 +24,7 @@ ADD av_imu_launch $ROS_WS/src/av_imu_launch
 
 # Source ROS setup for dependencies and build our code
 RUN . /opt/ros/$ROS_DISTRO/setup.sh \
-    && colcon build --symlink-install
+    && colcon build --symlink-install --cmake-args -DCMAKE_BUILD_TYPE=Release
 
 # Add command to docker entrypoint to source newly compiled code when running docker container
 RUN sed --in-place --expression \
