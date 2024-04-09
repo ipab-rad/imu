@@ -5,7 +5,7 @@ RUN apt update \
     && DEBIAN_FRONTEND=noninteractive \
         apt -y --quiet --no-install-recommends install \
         # Install Lord IMU driver pkg
-        ros-$ROS_DISTRO-microstrain-inertial-driver \
+        ros-$ROS_DISTRO-microstrain-inertial-driver=3.2.1-1jammy.20240304.151451 \
     && rm -rf /var/lib/apt/lists/*
 
 # Setup ROS workspace folder
