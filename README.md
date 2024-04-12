@@ -13,14 +13,14 @@ Lord GX5-3DM-15 IMU
 
 ## Usage
 
-This repository is designed to be used alongside a Docker container. Quickly build and run the Docker container using `run.sh` for runtime or debugging, and `dev.sh` for a convenient development setup.
+This repository is designed to be used alongside a Docker container. Quickly build and run the Docker container using `runtime.sh` for runtime or debugging, and `dev.sh` for a convenient development setup.
 
 ### Runtime or Debugging
 
 Execute the ROS 2 nodes in runtime mode or start an interactive bash session for detailed debugging:
 
 ```bash
-./run.sh [bash]
+./runtime.sh [bash]
 ```
 
 - **Without arguments**: Activates the container in runtime mode.
