@@ -10,27 +10,18 @@ RUN apt update \
 
 # Setup ROS workspace folder
 ENV ROS_WS /opt/ros_ws
-RUN mkdir -p $ROS_WS/src
 WORKDIR $ROS_WS
 
 # -----------------------------------------------------------------------
 
-FROM base AS build
+FROM base AS prebuilt
 
 # Bring launch pkg into the docker image
-ADD av_imu_launch $ROS_WS/src/av_imu_launch
+COPY av_imu_launch $ROS_WS/src/av_imu_launch
 
 # Source ROS setup for dependencies and build our code
 RUN . /opt/ros/$ROS_DISTRO/setup.sh \
-    && colcon build --symlink-install --cmake-args -DCMAKE_BUILD_TYPE=Release
-
-# Add command to docker entrypoint to source newly compiled code when running docker container
-RUN sed --in-place --expression \
-      '$isource "$ROS_WS/install/setup.bash"' \
-      /ros_entrypoint.sh
-
-# launch ros package
-CMD ["ros2", "launch", "av_imu_launch", "av_imu.launch.xml"]
+    && colcon build --cmake-args -DCMAKE_BUILD_TYPE=Release
 
 # -----------------------------------------------------------------------
 
@@ -52,7 +43,24 @@ RUN apt update \
 RUN echo "source /opt/ros/$ROS_DISTRO/setup.bash" >> /root/.bashrc
 
 # Add colcon build alias for convenience
-RUN echo 'alias colcon_build="colcon build --symlink-install --cmake-args -DCMAKE_BUILD_TYPE=Release && source install/setup.bash"' >> /root/.bashrc
+RUN echo 'alias colcon_build="colcon build --symlink-install \
+            --cmake-args -DCMAKE_BUILD_TYPE=Release && \ 
+            source install/setup.bash"' >> /root/.bashrc
 
 # Enter bash for development
 CMD ["bash"]
+
+# -----------------------------------------------------------------------
+
+FROM base as runtime
+
+# Copy artifacts/binaries from prebuilt
+COPY --from=prebuilt $ROS_WS/install $ROS_WS/install
+
+# Add command to docker entrypoint to source newly compiled code when running docker container
+RUN sed --in-place --expression \
+      '$isource "$ROS_WS/install/setup.bash"' \
+      /ros_entrypoint.sh
+
+# launch ros package
+CMD ["ros2", "launch", "av_imu_launch", "av_imu.launch.xml"]
