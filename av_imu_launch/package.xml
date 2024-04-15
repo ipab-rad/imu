@@ -5,6 +5,7 @@
   <version>0.0.0</version>
   <description>AV velodyne config and launch</description>
   <maintainer email="alex.bordallo@ed.ac.uk">Alejandro Bordallo</maintainer>
+  <maintainer email="hcruzgo@ed.ac.uk">Hector Cruz</maintainer>
   <license>Apache-2.0</license>
 
   <buildtool_depend>ament_cmake</buildtool_depend>
