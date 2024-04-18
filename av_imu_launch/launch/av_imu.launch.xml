@@ -1,0 +1,10 @@
+<launch>
+
+    <include file="$(find-pkg-share microstrain_inertial_driver)/launch/microstrain_launch.py">
+        <arg name="configure" value="true"/>
+        <arg name="activate" value="true"/>
+        <arg name="params_file" value="$(find-pkg-share av_imu_launch)/config/av_gx5_15.yml"/>
+        <arg name="namespace" value="/"/>
+    </include>
+
+</launch>
