@@ -1,11 +1,11 @@
 FROM ros:humble-ros-base-jammy AS base
 
 # Install basic dev tools (And clean apt cache afterwards)
-RUN apt update \
+RUN apt-get update \
     && DEBIAN_FRONTEND=noninteractive \
-        apt -y --quiet --no-install-recommends install \
+        apt-get -y --quiet --no-install-recommends install \
         # Install Lord IMU driver pkg
-        ros-$ROS_DISTRO-microstrain-inertial-driver=3.2.1-1jammy.20240304.151451 \
+        ros-"$ROS_DISTRO"-microstrain-inertial-driver=3.2.1-1jammy.20240304.151451 \
     && rm -rf /var/lib/apt/lists/*
 
 # Setup ROS workspace folder
@@ -20,7 +20,7 @@ FROM base AS prebuilt
 COPY av_imu_launch $ROS_WS/src/av_imu_launch
 
 # Source ROS setup for dependencies and build our code
-RUN . /opt/ros/$ROS_DISTRO/setup.sh \
+RUN . /opt/ros/"$ROS_DISTRO"/setup.sh \
     && colcon build --cmake-args -DCMAKE_BUILD_TYPE=Release
 
 # -----------------------------------------------------------------------
@@ -28,9 +28,9 @@ RUN . /opt/ros/$ROS_DISTRO/setup.sh \
 FROM base AS dev
 
 # Install basic dev tools (And clean apt cache afterwards)
-RUN apt update \
+RUN apt-get update \
     && DEBIAN_FRONTEND=noninteractive \
-        apt -y --quiet --no-install-recommends install \
+        apt-get -y --quiet --no-install-recommends install \
         # Command-line editor
         nano \
         # Ping network tools
@@ -40,11 +40,10 @@ RUN apt update \
     && rm -rf /var/lib/apt/lists/*
 
 # Add sourcing local workspace command to bashrc for convenience when running interactively
-RUN echo "source /opt/ros/$ROS_DISTRO/setup.bash" >> /root/.bashrc
-
 # Add colcon build alias for convenience
-RUN echo 'alias colcon_build="colcon build --symlink-install \
-            --cmake-args -DCMAKE_BUILD_TYPE=Release && \ 
+RUN echo "source /opt/ros/$ROS_DISTRO/setup.bash" >> /root/.bashrc && \
+    echo 'alias colcon_build="colcon build --symlink-install \
+            --cmake-args -DCMAKE_BUILD_TYPE=Release && \
             source install/setup.bash"' >> /root/.bashrc
 
 # Enter bash for development
@@ -59,7 +58,7 @@ COPY --from=prebuilt $ROS_WS/install $ROS_WS/install
 
 # Add command to docker entrypoint to source newly compiled code when running docker container
 RUN sed --in-place --expression \
-      '$isource "$ROS_WS/install/setup.bash"' \
+      "\$isource \"$ROS_WS/install/setup.bash\" " \
       /ros_entrypoint.sh
 
 # launch ros package

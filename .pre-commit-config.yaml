@@ -139,3 +139,28 @@ repos:
         args: ["--verbose"]
       - id: check-dependabot
         args: ["--verbose"]
+
+  # Bash prettify
+  - repo: https://github.com/lovesegfault/beautysh
+    rev: v6.2.1
+    hooks:
+      - id: beautysh
+
+  # ROS checks
+  - repo: https://github.com/tier4/pre-commit-hooks-ros
+    rev: v0.8.0
+    hooks:
+      - id: flake8-ros
+        exclude: velodyne|velodyne_driver|velodyne_laserscan|velodyne_msgs|velodyne_pointcloud
+      - id: prettier-xacro
+      - id: prettier-launch-xml
+      - id: prettier-package-xml
+      - id: ros-include-guard
+      - id: sort-package-xml
+
+  - repo: https://github.com/hadolint/hadolint
+    rev: v2.12.0
+    hooks:
+    - id: hadolint-docker
+      # Ignore non-pinned apt pkg
+      args: ['--ignore=DL3008']
