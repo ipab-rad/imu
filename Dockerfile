@@ -46,7 +46,7 @@ RUN apt-get update \
         bash-completion \
     && rm -rf /var/lib/apt/lists/*
 
-# Add sourcing local workspace command to bashrc for convenience when running interactively
+# Add sourcing local workspace command to bashrc when running interactively
 # Add colcon build alias for convenience
 RUN echo "source /opt/ros/$ROS_DISTRO/setup.bash" >> /root/.bashrc && \
     echo 'alias colcon_build="colcon build --symlink-install \
@@ -63,7 +63,7 @@ FROM base as runtime
 # Copy artifacts/binaries from prebuilt
 COPY --from=prebuilt $ROS_WS/install $ROS_WS/install
 
-# Add command to docker entrypoint to source newly compiled code when running docker container
+# Add command to docker entrypoint to source newly compiled code in container
 RUN sed --in-place --expression \
       "\$isource \"$ROS_WS/install/setup.bash\" " \
       /ros_entrypoint.sh
