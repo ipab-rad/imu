@@ -35,7 +35,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v5
         with:
-          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}_release
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}_${{ env.ROS_DISTRO }}
           tags: |
             type=ref,event=branch
             type=semver,pattern={{version}}
@@ -48,5 +48,6 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
-          file: .docker/release/Dockerfile
+          file: Dockerfile
+          target: runtime
           build-args: ROS_DISTRO=${{ env.ROS_DISTRO }}
