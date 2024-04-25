@@ -12,9 +12,6 @@
 #     pre-commit autoupdate
 #
 # See https://github.com/pre-commit/pre-commit
-exclude: "^\
-  (ecal_to_ros/.*)\
-  "
 
 repos:
   # Standard hooks
