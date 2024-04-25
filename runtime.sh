@@ -13,11 +13,11 @@ fi
 
 # Build docker image only up to base stage
 DOCKER_BUILDKIT=1 docker build \
-    -t imu_humble \
+    -t av_imu:latest \
     -f Dockerfile --target runtime .
 
 # Run docker image without volumes
 docker run -it --rm --net host --privileged \
     -v /dev/shm:/dev/shm \
     -v /dev/imu-6:/dev/imu-front \
-    imu_humble $CMD
+    av_imu:latest $CMD
