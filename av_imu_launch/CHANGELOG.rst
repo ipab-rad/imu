@@ -2,8 +2,8 @@
 Changelog for package av_imu_launch
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+1.0.0 (2024-04-26)
+------------------
 * Implement automated build of docker images on github (`#3 <https://github.com/ipab-rad/imu/issues/3>`_)
 * Improve repository and standardise docker setup (`#2 <https://github.com/ipab-rad/imu/issues/2>`_)
   - Split dockerfile into multiple stages for runtime and dev workflows
