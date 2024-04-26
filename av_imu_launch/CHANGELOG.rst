@@ -10,7 +10,6 @@ Forthcoming
   - Add scripts for docker image and container ease of use
   - Update README to reflect the updated repo workflow
 * Create imu launch pkg, setup and add Dockerfile (`#1 <https://github.com/ipab-rad/imu/issues/1>`_)
-  ---------
   Co-authored-by: hect95 <hector_cruz95@live.com>
   Co-authored-by: Hector Cruz <hcruzgo@ed.ac.uk>
 * Contributors: Alejandro Bordallo
