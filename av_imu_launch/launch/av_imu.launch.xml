@@ -1,8 +1,16 @@
 <launch>
-  <include file="$(find-pkg-share microstrain_inertial_driver)/launch/microstrain_launch.py">
-    <arg name="configure" value="true"/>
-    <arg name="activate" value="true"/>
-    <arg name="params_file" value="$(find-pkg-share av_imu_launch)/config/av_gx5_15.yml"/>
-    <arg name="namespace" value="/"/>
-  </include>
+  <group>
+    <push-ros-namespace namespace="/sensor/imu"/>
+
+    <!-- Microstrain sensor node -->
+    <node pkg="microstrain_inertial_driver" exec="microstrain_inertial_driver_node" name="microstrain_inertial_driver_node" namespace="">
+      <param from="$(find-pkg-share av_imu_launch)/config/base_params.yml"/>
+      <param from="$(find-pkg-share av_imu_launch)/config/av_gx5_15.yml"/>
+      <param name="debug" value="false"/>
+      <remap from="imu/data" to="data"/>
+      <remap from="imu/mag" to="mag"/>
+      <remap from="imu/pressure" to="pressure"/>
+      <remap from="imu/wheel_speed" to="wheel_speed"/>
+    </node>
+  </group>
 </launch>
