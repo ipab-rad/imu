@@ -2,6 +2,15 @@
 Changelog for package av_imu_launch
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Add cyclone DDS as ROS RMW  + configurate it to support high msg throughput
+* Port `microstrain_launch.py` to XML ROS launch
+* Simplify Imu parameters
+* Fix wrong sensor topic namespace, using `/sensor/imu/*`
+* Imu is set to run at 200 Hz instead of 100 Hz
+* Enable colorised ROS log
+
 1.0.0 (2024-04-26)
 ------------------
 * Implement automated build of docker images on github (`#3 <https://github.com/ipab-rad/imu/issues/3>`_)
