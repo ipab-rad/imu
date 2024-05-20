@@ -10,6 +10,7 @@ Forthcoming
 * Fix wrong sensor topic namespace, using `/sensor/imu/*`
 * Imu is set to run at 200 Hz instead of 100 Hz
 * Enable colorised ROS log
+* Synchronise host time with docker container
 
 1.0.0 (2024-04-26)
 ------------------
