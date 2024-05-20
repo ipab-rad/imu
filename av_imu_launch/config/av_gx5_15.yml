@@ -7,7 +7,7 @@
     # ******************************************************************
     # University  of Edinburgh Vehicle IMU Mandatory Settings
     # ******************************************************************
-    port : "/dev/imu-front"
+    port : "/dev/imu-6"
     baudrate : 230400
 
     # This will cause the node to convert any NED measurements to ENU
@@ -28,8 +28,8 @@
     # aux_port is only available for the GQ7 and is only needed when streaming RTCM corrections to the device from ROS, or if you want to publish NMEA sentences from this node
     # port         : "/dev/imu-front"
     # baudrate     : 230400
-    aux_port     : "/dev/ttyACM1"
-    aux_baudrate : 115200
+    # aux_port     : "/dev/ttyACM1"
+    # aux_baudrate : 115200
     debug        : False
 
     # If set to true, this will configure the requested baudrate on the device for the main port.
