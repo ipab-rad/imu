@@ -2,8 +2,8 @@
 Changelog for package av_imu_launch
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+1.1.0 (2024-05-21)
+------------------
 * Add cyclone DDS as ROS RMW  + configurate it to support high msg throughput
 * Port `microstrain_launch.py` to XML ROS launch
 * Simplify Imu parameters
