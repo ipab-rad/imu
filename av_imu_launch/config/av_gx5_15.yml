@@ -7,7 +7,7 @@
     # ******************************************************************
     # University  of Edinburgh Vehicle IMU Mandatory Settings
     # ******************************************************************
-    port : "/dev/imu-6"
+    port : "/dev/imu-front"
     baudrate : 230400
 
     # This will cause the node to convert any NED measurements to ENU
