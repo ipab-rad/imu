@@ -19,5 +19,6 @@ DOCKER_BUILDKIT=1 docker build \
 # Run docker image without volumes
 docker run -it --rm --net host --privileged \
     -v /dev/shm:/dev/shm \
-    -v /dev/imu-6:/dev/imu-front \
+    -v /dev/imu-front:/dev/imu-front \
+    -v /etc/localtime:/etc/localtime:ro \
     av_imu:latest $CMD
