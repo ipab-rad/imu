@@ -2,6 +2,11 @@
 Changelog for package av_imu_launch
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Remove pinned IMU driver version no longer available from Dockerfile
+* Contributors: Alejandro Bordallo
+
 1.2.0 (2024-06-05)
 ------------------
 * Add bash args to optionally load local cyclone_dds
