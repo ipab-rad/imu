@@ -12,7 +12,7 @@ RUN apt-get update \
     && DEBIAN_FRONTEND=noninteractive \
         apt-get -y --quiet --no-install-recommends install \
         # Install Lord IMU driver pkg
-        ros-"$ROS_DISTRO"-microstrain-inertial-driver=4.2.0-1jammy.20240407.023013 \
+        ros-"$ROS_DISTRO"-microstrain-inertial-driver \
         # Install Cyclone DDS ROS RMW
         ros-"$ROS_DISTRO"-rmw-cyclonedds-cpp \
     && rm -rf /var/lib/apt/lists/*
