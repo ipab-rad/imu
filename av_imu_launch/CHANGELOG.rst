@@ -2,8 +2,8 @@
 Changelog for package av_imu_launch
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+1.2.1 (2024-06-06)
+------------------
 * Remove pinned IMU driver version no longer available from Dockerfile
 * Contributors: Alejandro Bordallo
 
